@@ -5,6 +5,7 @@ from fastapi import FastAPI, Response, status
 from tortoise import Tortoise
 
 from src.config import TORTOISE_CONFIG
+from src.handlers import create_task_handler, list_tasks_handler, patch_task_handler
 
 
 @asynccontextmanager
@@ -20,6 +21,11 @@ app = FastAPI(lifespan=lifespan)
 @app.get('/health/')
 async def health():
     return Response(status_code=status.HTTP_200_OK)
+
+
+app.add_api_route('/', list_tasks_handler)
+app.add_api_route('/', create_task_handler, methods=['POST'])
+app.add_api_route('/', patch_task_handler, methods=['PATCH'])
 
 
 if __name__ == '__main__':
