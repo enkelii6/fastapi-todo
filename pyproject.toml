@@ -1,0 +1,13 @@
+[tool.aerich]
+tortoise_orm = "code.config.TORTOISE_CONFIG"
+location = "./migrations"
+src_folder = "./."
+
+[tool.ruff]
+src = ["code"]
+show-fixes = true
+line-length = 120
+
+[tool.tuff.lint]
+extend-select = ["C4", "SIM", "TCH"]
+ignore = []
